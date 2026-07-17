@@ -1,97 +1,108 @@
 import { Project, TimelineEvent, Service } from './types';
 
 export const HERO_DATA = {
-  headline: "I build custom digital experiences for businesses.",
-  subheadline: "Freelance Web Developer, App Developer, and UI/UX Designer. I specialize in turning your ideas into fully functional, high-performance applications tailored to your specific goals.",
+  headline: "I handle the tech, so you can focus on your business.",
+  subheadline: "I take complete ownership of your digital presence. From making sure your website looks premium and ranks at the top of Google, to building apps that your customers love to use. I solve your digital headaches and drive real growth.",
   values: [
     {
-      title: "Web Development",
-      content: "Responsive, fast, and SEO-friendly websites built with modern technologies like React and Tailwind CSS."
+      title: "Beautiful, Conversion-Focused Websites",
+      content: "Websites that don't just look incredible, but are specifically designed to turn visitors into paying customers."
     },
     {
-      title: "App Development",
-      content: "Native and cross-platform mobile applications for iOS and Android that deliver seamless user experiences."
+      title: "Top of Google (SEO)",
+      content: "I implement proven strategies so your business shows up first when customers search for your services."
     },
     {
-      title: "UI/UX Design",
-      content: "Clean, intuitive, and conversion-optimized interfaces that reflect your brand and engage your users."
+      title: "Custom Applications",
+      content: "Seamless mobile and web apps that simplify your operations and give your customers a premium experience."
     },
     {
-      title: "AI Voice Agents",
-      content: "Automated AI receptionists that handle customer calls, appointments, and support inquiries 24/7."
-    },
-    {
-      title: "Maintenance & Support",
-      content: "Subscription-based plans to keep your digital products updated, secure, and running flawlessly after launch."
+      title: "Zero Headaches & Complete Support",
+      content: "I take full responsibility for updates, security, and maintenance. You never have to worry about the tech breaking."
     }
   ]
 };
 
 export const TIMELINE: TimelineEvent[] = [
   {
-    year: "2022",
-    title: "The Beginning",
+    year: "Phase 1",
+    title: "Understanding Business Needs",
     type: "milestone",
-    description: "Started my journey in web development, building simple landing pages and learning the fundamentals of UI design."
+    description: "Started by helping local businesses establish their first digital footprint, realizing that beautiful design must be paired with real results."
   },
   {
-    year: "2023",
-    title: "Full-Stack & Apps",
+    year: "Phase 2",
+    title: "Driving Growth",
     type: "learning",
-    description: "Expanded my skillset to include full-stack development and mobile app creation. Delivered my first end-to-end client projects."
+    description: "Expanded my services to include SEO and conversion optimization, helping clients actually get a return on their investment."
   },
   {
-    year: "2024",
-    title: "Freelance Agency",
+    year: "Phase 3",
+    title: "Complete Digital Partner",
     type: "pivot",
-    description: "Transitioned to full-time freelancing. Partnered with startups and established businesses to revamp their digital presence."
+    description: "Transitioned to offering end-to-end solutions. I now act as a technical partner, taking all the tech burden off the business owner's shoulders."
   },
   {
     year: "Present",
-    title: "Scaling Solutions",
+    title: "Scaling Client Success",
     type: "milestone",
-    description: "Focused on building scalable, performant custom software and crafting high-quality user experiences for clients worldwide."
+    description: "Focused on building premium digital assets that predictably increase sales and streamline operations for established brands."
   }
 ];
 
 export const STRENGTHS = [
-  { title: "End-to-End Delivery", desc: "From wireframes to deployment, I handle the entire product lifecycle so you can focus on your business." },
-  { title: "User-Centric Design", desc: "I prioritize the needs of your customers, ensuring that every interface is intuitive, accessible, and delightful to use." },
-  { title: "Business Alignment", desc: "I don't just write code; I build solutions that solve real business problems and drive measurable growth." }
+  { title: "I Take Full Responsibility", desc: "From the first design to keeping the servers running years later, I handle everything. You never have to touch a line of code." },
+  { title: "Designed For Sales", desc: "Every button, color, and layout choice is made with one goal: to increase your conversions and grow your bottom line." },
+  { title: "Premium Brand Image", desc: "Your digital presence will scream quality, immediately establishing trust and authority with your potential clients." }
 ];
 
 export const SERVICES: Service[] = [
-  { name: "Custom Websites", category: "web", context: "Landing pages, corporate websites, and complex web applications tailored to your brand." },
-  { name: "E-Commerce", category: "web", context: "Scalable online stores with secure payment gateways and inventory management." },
-  { name: "SEO Optimization", category: "web", context: "Technical and on-page SEO to improve your visibility in search engine rankings." },
-  { name: "iOS Applications", category: "app", context: "Native-feeling apps designed specifically for the Apple ecosystem." },
-  { name: "Android Applications", category: "app", context: "High-performance applications tailored for Android devices." },
-  { name: "Cross-Platform Apps", category: "app", context: "React Native and Flutter apps that run flawlessly on both platforms, saving time and cost." },
-  { name: "Wireframing & Prototyping", category: "design", context: "Low and high-fidelity mockups to visualize the product before development begins." },
-  { name: "Brand Identity", category: "design", context: "Logo design, color palettes, and typography guidelines to establish a strong brand presence." },
-  { name: "AI Voice Agents (AI Receptionist)", category: "ai", context: "Intelligent, conversational voice bots that handle customer calls, book appointments, and provide 24/7 automated support." },
-  { name: "After-Development Support", category: "support", context: "Subscription-based maintenance plans ensuring your website or app stays secure, fast, and up-to-date post-launch." }
+  { name: "Premium Websites", category: "web", context: "Visually stunning websites that establish immediate trust and convince visitors to buy." },
+  { name: "Google Ranking (SEO)", category: "web", context: "Strategies that put your business at the top of search results so customers find you first." },
+  { name: "Mobile Applications", category: "app", context: "Apps that your customers will actually want to use, keeping them connected to your business." },
+  { name: "Automated Booking Systems", category: "web", context: "Systems that handle your appointments automatically, saving you hours of admin work." },
+  { name: "Brand Design", category: "design", context: "A cohesive, professional look across all your digital assets that sets you apart from competitors." },
+  { name: "AI Receptionist", category: "ai", context: "Never miss a lead. An AI assistant that answers calls and books clients for you, 24/7." },
+  { name: "Worry-Free Maintenance", category: "support", context: "I monitor, update, and secure everything. If something goes wrong, I fix it before you even notice." }
 ];
 
 export const PROJECTS: Project[] = [
   {
-    id: "1",
-    title: "Hair Salon PWA",
-    subtitle: "A Progressive Web App for a local hair salon",
-    tags: ["React", "PWA", "Vite", "Tailwind CSS"],
-    demoLink: "https://salon-app-nu-six.vercel.app",
+    id: "hair-salon",
+    title: "Hair Salon Growth Platform",
+    subtitle: "A premium digital storefront designed to fill the booking calendar.",
+    tags: ["More Bookings", "Premium Brand", "Local SEO"],
+    demoLink: "https://salon-nexus-prototype.prathmeshbhilare52.workers.dev/",
     caseStudy: {
-      problem: "The salon needed a modern, installable booking experience for clients without the friction of a traditional app store download.",
-      importance: "An easy-to-access application increases client retention and simplifies appointment management.",
-      approach: "Developed a Progressive Web App (PWA) using React and Tailwind CSS, allowing users to install the app directly from their browser on any device.",
-      technicalDecisions: [
-        "Implemented PWA capabilities (manifest, service workers) for offline support and home screen installation.",
-        "Built a responsive layout that looks and feels like a native app on mobile devices.",
-        "Optimized load times to ensure quick access for users on the go."
+      problem: "The salon relied heavily on word-of-mouth and had an outdated website that didn't reflect their high-end services.",
+      importance: "Clients judge a beauty business by its visual presentation. A poor website was actively losing them premium clients.",
+      approach: "Built a visually striking, incredibly fast landing page that immediately communicates luxury and makes booking frictionless.",
+      benefits: [
+        "A flawless, high-end visual identity that matches their in-store experience.",
+        "A streamlined booking flow that turns casual browsers into confirmed appointments.",
+        "Optimized for local search so they appear when people look for salons nearby."
       ],
-      stack: ["React", "Vite", "Tailwind CSS", "PWA"],
-      outcome: "Delivered a fast, app-like experience that improved the booking process for both the salon and its clients.",
-      learnings: "PWAs are a powerful and cost-effective alternative to native apps for small businesses."
+      outcome: "Transformed their online presence into their #1 source of new, high-paying clients.",
+      learnings: "In the beauty industry, a premium digital experience is just as important as the service itself."
+    }
+  },
+  {
+    id: "beauty-parlour",
+    title: "Beauty Parlour Sales Engine",
+    subtitle: "An elegant website that answers client questions and drives sales.",
+    tags: ["Lead Generation", "Trust Building", "Mobile Optimized"],
+    demoLink: "https://beautybook.prathmeshbhilareml.workers.dev/",
+    caseStudy: {
+      problem: "Staff spent hours answering the same questions on the phone about pricing and service details instead of serving clients.",
+      importance: "Time spent on phone admin is time (and money) lost on the salon floor.",
+      approach: "Created a comprehensive digital brochure with perfectly structured service menus, transparent pricing, and clear calls to action.",
+      benefits: [
+        "Drastically reduced phone inquiries by answering client questions upfront.",
+        "Built immediate trust through a highly professional, beautiful layout.",
+        "Ensured the site looks perfect and loads instantly on mobile phones where most clients browse."
+      ],
+      outcome: "Freed up staff time while simultaneously increasing the volume of online bookings.",
+      learnings: "Clarity and transparency online directly translate to more confident buying decisions."
     }
   }
 ];

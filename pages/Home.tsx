@@ -1,120 +1,135 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout, Smartphone, PenTool, ArrowRight, Atom, Server, Figma, Bot, Wrench } from 'lucide-react';
+import { Layout, Search, Smartphone, ShieldCheck, ArrowRight } from 'lucide-react';
 import { HERO_DATA } from '../constants';
 import { Button, Card } from '../components/ui';
 import { FadeIn } from '../components/FadeIn';
 import { Terminal } from '../components/Terminal';
+import { motion } from 'motion/react';
+
+import Services from './Services';
+import Projects from './Projects';
+import About from './About';
+import Contact from './Contact';
 
 export default function Home() {
   const navigate = useNavigate();
   const icons = [
     <Layout key="1" size={24} />, 
-    <Smartphone key="2" size={24} />, 
-    <PenTool key="3" size={24} />,
-    <Bot key="4" size={24} />,
-    <Wrench key="5" size={24} />
+    <Search key="2" size={24} />, 
+    <Smartphone key="3" size={24} />,
+    <ShieldCheck key="4" size={24} />
   ];
 
-  const SKILLS_SHOWCASE = [
-    {
-      icon: <Atom className="text-blue-500 mb-4" size={32} />,
-      name: "React & Next.js",
-      desc: "Modern web applications"
-    },
-    {
-      icon: <Smartphone className="text-cyan-500 mb-4" size={32} />,
-      name: "Flutter & React Native",
-      desc: "Cross-platform mobile apps"
-    },
-    {
-      icon: <Server className="text-green-500 mb-4" size={32} />,
-      name: "Node.js & Backend",
-      desc: "Scalable APIs and servers"
-    },
-    {
-      icon: <Figma className="text-purple-500 mb-4" size={32} />,
-      name: "Figma & UI/UX",
-      desc: "Wireframes to polished designs"
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/' + (id === 'home' ? '' : id));
     }
-  ];
+  };
 
   return (
-    <div className="space-y-16 md:space-y-24">
-      {/* Hero */}
-      <div className="pt-4 md:pt-20 pb-8 md:pb-16 flex flex-col md:flex-row items-center gap-12">
-        <div className="flex-1 max-w-2xl text-center md:text-left">
-          <FadeIn delay={100}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold mb-6 tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
-              OPEN TO WORK
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.15]">
-              {HERO_DATA.headline}
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
-              {HERO_DATA.subheadline}
-            </p>
-          </FadeIn>
-          <FadeIn delay={300}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button onClick={() => navigate('/projects')} className="group">
-                View Projects 
-                <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button variant="outline" onClick={() => navigate('/contact')}>
-                Contact Me
-              </Button>
-            </div>
-          </FadeIn>
-        </div>
-        
-        {/* Right side visual: Code Terminal */}
-        <div className="hidden md:block flex-1 w-full max-w-lg perspective-1000">
-          <FadeIn delay={400} direction="left">
-             <div className="transform rotate-y-[-5deg] rotate-x-[5deg] hover:rotate-0 transition-transform duration-500">
-                <Terminal />
-                {/* Decorative blob behind */}
-                <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl -z-10 rounded-full" />
-             </div>
-          </FadeIn>
-        </div>
-      </div>
-
-      {/* Value Blocks */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {HERO_DATA.values.map((item, idx) => (
-          <FadeIn key={idx} delay={500 + (idx * 100)}>
-            <Card className="h-full group hover:border-indigo-300 transition-colors">
-              <div className="w-12 h-12 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-50 group-hover:scale-110 transition-all">
-                {icons[idx]}
+    <div className="space-y-24 md:space-y-32" id="home">
+      {/* Hero Section */}
+      <div className="space-y-16 md:space-y-24">
+        <div className="pt-4 md:pt-20 pb-8 flex flex-col md:flex-row items-center gap-12">
+          <div className="flex-1 max-w-2xl text-center md:text-left">
+            <FadeIn delay={100} duration={0.8}>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold mb-6 tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
+                ACCEPTING NEW CLIENTS
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                {item.content}
+            </FadeIn>
+            <FadeIn delay={250} duration={0.8}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.15]">
+                {HERO_DATA.headline}
+              </h1>
+            </FadeIn>
+            <FadeIn delay={400} duration={0.8}>
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
+                {HERO_DATA.subheadline}
               </p>
-            </Card>
-          </FadeIn>
-        ))}
-      </div>
-
-      {/* Visual Skills Section */}
-      <FadeIn delay={800}>
-        <div className="pt-8 pb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Tech Stack & Tools</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {SKILLS_SHOWCASE.map((skill, i) => (
-              <Card key={i} className="text-center p-6 hover:-translate-y-2 transition-all duration-300 border-slate-100 hover:border-indigo-200 hover:shadow-lg">
-                <div className="flex justify-center">{skill.icon}</div>
-                <h3 className="font-bold text-slate-900 mb-2">{skill.name}</h3>
-                <p className="text-xs text-slate-500">{skill.desc}</p>
-              </Card>
-            ))}
+            </FadeIn>
+            <FadeIn delay={550} duration={0.8}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <Button onClick={() => scrollTo('projects')} className="group">
+                  See My Results 
+                  <motion.div
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <ArrowRight size={18} className="ml-2" />
+                  </motion.div>
+                </Button>
+                <Button variant="outline" onClick={() => scrollTo('contact')}>
+                  Book a Free Consultation
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
+          
+          {/* Right side visual: Dashboard Graphic */}
+          <div className="hidden md:block flex-1 w-full max-w-lg perspective-1000">
+            <FadeIn delay={700} direction="left" duration={1}>
+               <motion.div 
+                  whileHover={{ rotateY: 0, rotateX: 0, scale: 1.02 }}
+                  initial={{ rotateY: -10, rotateX: 5 }}
+                  animate={{ rotateY: -5, rotateX: 5, y: [0, -10, 0] }}
+                  transition={{ 
+                     rotateY: { type: "spring", stiffness: 200, damping: 20 },
+                     rotateX: { type: "spring", stiffness: 200, damping: 20 },
+                     scale: { type: "spring", stiffness: 200, damping: 20 },
+                     y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                  className="transform-gpu"
+               >
+                  <Terminal />
+                  {/* Decorative blob behind */}
+                  <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl -z-10 rounded-full" />
+               </motion.div>
+            </FadeIn>
           </div>
         </div>
-      </FadeIn>
+
+        {/* Value Blocks */}
+        <div className="grid sm:grid-cols-2 gap-6 pb-16">
+          {HERO_DATA.values.map((item, idx) => (
+            <FadeIn key={idx} delay={500 + (idx * 100)}>
+              <Card className="h-full group">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-12 h-12 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-50 transition-colors"
+                >
+                  {icons[idx]}
+                </motion.div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {item.content}
+                </p>
+              </Card>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+
+      <div id="services" className="scroll-mt-24 pt-8">
+        <Services />
+      </div>
+
+      <div id="projects" className="scroll-mt-24 pt-8">
+        <Projects />
+      </div>
+
+      <div id="about" className="scroll-mt-24 pt-8">
+        <About />
+      </div>
+
+      <div id="contact" className="scroll-mt-24 pt-8 pb-12">
+        <Contact />
+      </div>
     </div>
   );
 }

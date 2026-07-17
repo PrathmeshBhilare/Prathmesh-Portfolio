@@ -1,53 +1,51 @@
-import React, { useRef, useEffect, useState, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import { motion } from 'motion/react';
 
 interface FadeInProps {
   children?: ReactNode;
   delay?: number;
   className?: string;
-  direction?: 'up' | 'left' | 'right' | 'none';
+  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
+  staggerChildren?: number;
+  duration?: number;
 }
 
-export const FadeIn: React.FC<FadeInProps> = ({ children, delay = 0, className = "", direction = 'up' }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const domRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (domRef.current) observer.unobserve(domRef.current);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const currentRef = domRef.current;
-    if (currentRef) observer.observe(currentRef);
-
-    return () => {
-      if (currentRef) observer.unobserve(currentRef);
-    };
-  }, []);
-
-  const getTransform = () => {
-    if (!isVisible) {
-      if (direction === 'up') return 'translate-y-8';
-      if (direction === 'left') return '-translate-x-8';
-      if (direction === 'right') return 'translate-x-8';
-      return '';
+export const FadeIn: React.FC<FadeInProps> = ({ 
+  children, 
+  delay = 0, 
+  className = "", 
+  direction = 'up',
+  staggerChildren,
+  duration = 0.6
+}) => {
+  const getVariants = () => {
+    const hidden: any = { opacity: 0 };
+    const visible: any = { opacity: 1, transition: { duration, ease: [0.25, 0.1, 0.25, 1.0], delay: delay / 1000 } };
+    
+    if (staggerChildren) {
+      visible.transition.staggerChildren = staggerChildren;
     }
-    return 'translate-y-0 translate-x-0';
+
+    switch (direction) {
+      case 'up': hidden.y = 40; visible.y = 0; break;
+      case 'down': hidden.y = -40; visible.y = 0; break;
+      case 'left': hidden.x = -40; visible.x = 0; break;
+      case 'right': hidden.x = 40; visible.x = 0; break;
+      default: break;
+    }
+
+    return { hidden, visible };
   };
 
   return (
-    <div
-      ref={domRef}
-      className={`transition-all duration-700 ease-out transform ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      } ${getTransform()} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={getVariants()}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };

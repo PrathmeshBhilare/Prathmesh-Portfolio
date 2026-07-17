@@ -1,83 +1,118 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SOCIALS } from '../constants';
-import { Card } from '../components/ui';
-import { Mail, Github, Linkedin, Copy, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, Github, Linkedin, Instagram, MessageCircle, User } from 'lucide-react';
 import { FadeIn } from '../components/FadeIn';
 
 export default function Contact() {
+  const [activeNode, setActiveNode] = useState<number | null>(null);
+
   const copyEmail = () => {
     navigator.clipboard.writeText(SOCIALS.email);
-    alert('Email copied to clipboard');
+    setActiveNode(0);
+    setTimeout(() => setActiveNode(null), 3000);
   };
 
   const copyWhatsapp = () => {
     navigator.clipboard.writeText(SOCIALS.whatsapp);
-    alert('WhatsApp number copied to clipboard');
+    setActiveNode(1);
+    setTimeout(() => setActiveNode(null), 3000);
   };
 
+  const contactNodes = [
+    { icon: Mail, color: "text-indigo-600", border: "border-indigo-100", onClick: copyEmail, label: "Email", value: SOCIALS.email },
+    { icon: MessageCircle, color: "text-green-600", border: "border-green-100", onClick: copyWhatsapp, label: "WhatsApp", value: SOCIALS.whatsapp },
+    { icon: Instagram, color: "text-pink-600", border: "border-pink-100", href: SOCIALS.instagram, label: "Instagram" },
+    { icon: Github, color: "text-slate-900", border: "border-slate-200", href: SOCIALS.github, label: "GitHub" },
+    { icon: Linkedin, color: "text-blue-600", border: "border-blue-100", href: SOCIALS.linkedin, label: "LinkedIn" },
+  ];
+
   return (
-    <div className="max-w-2xl mx-auto pt-12">
+    <div className="max-w-4xl mx-auto pt-12 px-4 pb-24">
       <FadeIn>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">Get In Touch</h1>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Get In Touch</h1>
+          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto">
+            I'm currently taking on <span className="text-indigo-600 font-bold">Freelance Projects</span> and <span className="text-indigo-600 font-bold">Custom Development</span>. Tap a node to connect.
+          </p>
+        </div>
       </FadeIn>
       
       <FadeIn delay={100}>
-        <Card className="mb-12 !px-4 sm:!px-8">
-          <p className="text-slate-600 text-center mb-8 text-base md:text-lg">
-            I'm currently taking on <span className="text-indigo-600 font-bold">Freelance Projects</span> and <span className="text-indigo-600 font-bold">Custom Web & App Development</span>. Let's discuss your business needs.
-          </p>
+        <div className="relative w-[320px] h-[320px] md:w-[460px] md:h-[460px] mx-auto my-16 flex items-center justify-center">
           
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between p-3 sm:p-4 bg-slate-50 rounded border border-slate-200 group hover:border-indigo-500 transition-colors cursor-pointer" onClick={copyEmail}>
-              <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
-                <Mail className="text-indigo-600 shrink-0" size={20} />
-                <span className="text-slate-900 font-mono text-sm sm:text-base truncate">{SOCIALS.email}</span>
-              </div>
-              <button className="p-1.5 sm:p-2 hover:bg-slate-200 rounded text-slate-400 hover:text-slate-700 transition-colors shrink-0">
-                <Copy size={16} className="sm:w-[18px] sm:h-[18px]" />
-              </button>
-            </div>
-
-            <div className="flex items-center justify-between p-3 sm:p-4 bg-slate-50 rounded border border-slate-200 group hover:border-green-500 transition-colors cursor-pointer" onClick={copyWhatsapp}>
-              <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
-                <MessageCircle className="text-green-600 shrink-0" size={20} />
-                <span className="text-slate-900 font-mono text-sm sm:text-base truncate">{SOCIALS.whatsapp}</span>
-              </div>
-              <button className="p-1.5 sm:p-2 hover:bg-slate-200 rounded text-slate-400 hover:text-slate-700 transition-colors shrink-0">
-                <Copy size={16} className="sm:w-[18px] sm:h-[18px]" />
-              </button>
-            </div>
-
-            <a href={SOCIALS.instagram} target="_blank" rel="noreferrer" className="flex items-center justify-between p-3 sm:p-4 bg-slate-50 rounded border border-slate-200 hover:border-pink-500 transition-colors">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <Instagram className="text-pink-600 shrink-0" size={20} />
-                <span className="text-slate-900 font-bold text-sm sm:text-base">Instagram</span>
-              </div>
-              <span className="text-slate-500 text-xs sm:text-sm">Follow -&gt;</span>
-            </a>
-
-            <a href={SOCIALS.github} target="_blank" rel="noreferrer" className="flex items-center justify-between p-3 sm:p-4 bg-slate-50 rounded border border-slate-200 hover:border-indigo-500 transition-colors">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <Github className="text-slate-900 shrink-0" size={20} />
-                <span className="text-slate-900 font-bold text-sm sm:text-base">GitHub</span>
-              </div>
-              <span className="text-slate-500 text-xs sm:text-sm">View Code -&gt;</span>
-            </a>
-
-            <a href={SOCIALS.linkedin} target="_blank" rel="noreferrer" className="flex items-center justify-between p-3 sm:p-4 bg-slate-50 rounded border border-slate-200 hover:border-indigo-500 transition-colors">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <Linkedin className="text-blue-600 shrink-0" size={20} />
-                <span className="text-slate-900 font-bold text-sm sm:text-base">LinkedIn</span>
-              </div>
-               <span className="text-slate-500 text-xs sm:text-sm">Connect -&gt;</span>
-            </a>
+          {/* SVG Connecting Lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 460 460">
+            {contactNodes.map((_, i) => {
+              const angle = (-90 + (i * 72)) * (Math.PI / 180);
+              // Radius is 160px for the 460px viewBox
+              const x = 230 + 160 * Math.cos(angle);
+              const y = 230 + 160 * Math.sin(angle);
+              return (
+                <line key={i} x1="230" y1="230" x2={x} y2={y} stroke="#cbd5e1" strokeWidth="2" strokeDasharray="4 4" className="animate-pulse" />
+              )
+            })}
+          </svg>
+          
+          {/* Central Profile Node */}
+          <div className="relative z-10 w-28 h-28 md:w-36 md:h-36 bg-slate-100 rounded-full border-4 border-white shadow-xl flex items-center justify-center text-slate-400 group overflow-hidden hover:scale-105 transition-transform duration-300 ring-4 ring-indigo-50">
+            <User size={48} className="md:w-16 md:h-16 group-hover:scale-110 transition-transform duration-500" />
+            {/* 
+              To upload your own profile photo, replace the User icon with an img tag like this:
+              <img src="/your-photo-url.jpg" alt="Profile" className="w-full h-full object-cover" />
+            */}
           </div>
-        </Card>
-      </FadeIn>
 
-      <FadeIn delay={200}>
-        <div className="text-center text-slate-400 text-sm">
-          <p>Looking forward to bringing your ideas to life.</p>
+          {/* Orbiting Nodes */}
+          {contactNodes.map((item, i) => {
+            const angle = -90 + (i * 72);
+            return (
+              <div 
+                key={i}
+                className="absolute top-1/2 left-1/2"
+                style={{ transform: `translate(-50%, -50%) rotate(${angle}deg)` }}
+              >
+                {/* Responsive radius: 110px mobile, 160px desktop */}
+                <div className="translate-x-[120px] md:translate-x-[160px]">
+                  <div style={{ transform: `rotate(${-angle}deg)` }}>
+                     {item.href ? (
+                       <a 
+                         href={item.href} 
+                         target="_blank" 
+                         rel="noreferrer" 
+                         className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center border-2 bg-white ${item.border} ${item.color} hover:scale-110 transition-all duration-300 shadow-md group relative hover:border-indigo-400 hover:shadow-xl`}
+                       >
+                         <item.icon size={24} className="md:w-7 md:h-7" />
+                         <span className="absolute -bottom-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm font-bold text-slate-700 bg-white px-3 py-1.5 rounded-full shadow-md whitespace-nowrap border border-slate-100 pointer-events-none z-20">
+                           {item.label}
+                         </span>
+                       </a>
+                     ) : (
+                       <div className="relative z-30">
+                         <button 
+                           onClick={item.onClick} 
+                           className={`w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center border-2 bg-white ${item.border} ${item.color} hover:scale-110 transition-all duration-300 shadow-md group relative hover:border-indigo-400 hover:shadow-xl`}
+                         >
+                           <item.icon size={24} className="md:w-7 md:h-7" />
+                           <span className="absolute -bottom-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm font-bold text-slate-700 bg-white px-3 py-1.5 rounded-full shadow-md whitespace-nowrap border border-slate-100 pointer-events-none z-20">
+                             {item.label}
+                           </span>
+                         </button>
+                         
+                         {/* Tooltip when clicked */}
+                         {activeNode === i && (
+                           <div className="absolute left-[calc(100%+16px)] top-1/2 -translate-y-1/2 bg-white px-4 py-2 rounded-lg shadow-xl border border-slate-200 whitespace-nowrap z-50 flex items-center gap-2">
+                             <span className="font-bold text-slate-800 text-sm">{item.label}:</span>
+                             <span className="text-slate-600 text-sm font-mono">{item.value}</span>
+                             <span className="text-xs text-green-600 font-bold ml-1">(Copied!)</span>
+                           </div>
+                         )}
+                       </div>
+                     )}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </FadeIn>
     </div>

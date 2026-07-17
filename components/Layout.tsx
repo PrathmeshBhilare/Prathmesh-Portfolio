@@ -45,12 +45,14 @@ export default function Layout() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-slate-600 hover:text-slate-900"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <button 
+              className="text-slate-600 hover:text-slate-900"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav */}

@@ -32,7 +32,6 @@ const NavItem = ({ to, label, isActive, onClick }: { to: string, label: string, 
 };
 
 export default function Layout() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
@@ -106,10 +105,10 @@ export default function Layout() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-lg border-b border-slate-200/60 shadow-sm py-2' : 'bg-transparent py-4'}`}
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-lg border-b border-slate-200/60 shadow-sm py-2' : 'bg-transparent py-2 md:py-4'}`}
       >
-        <div className="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
-          <button onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })} className="text-lg font-bold tracking-tight text-slate-900 hover:text-indigo-600 transition-colors flex items-center gap-2">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-0">
+          <button onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })} className="text-lg font-bold tracking-tight text-slate-900 hover:text-indigo-600 transition-colors flex items-center gap-2 px-2 md:px-0 mt-2 md:mt-0">
             <span className="w-2 h-2 bg-indigo-600 rounded-full animate-pulse"></span>
             <span className="font-mono tracking-tight">PRATHMESH_BHILARE</span>
           </button>
@@ -121,51 +120,15 @@ export default function Layout() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 md:hidden">
-            <button 
-              className="text-slate-600 hover:text-slate-900"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <motion.div animate={{ rotate: isMenuOpen ? 90 : 0 }}>
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </motion.div>
-            </button>
+          {/* Mobile Nav (Horizontal Scroll) */}
+          <div className="md:hidden flex items-center overflow-x-auto w-full pb-2 -ml-2 px-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex space-x-1 flex-nowrap whitespace-nowrap">
+              {navItems.map((item) => (
+                <NavItem key={item.to} to={item.to} label={item.label} isActive={activeSection === item.to} />
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* Mobile Nav */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div 
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-lg overflow-hidden"
-            >
-              <motion.div 
-                initial="closed"
-                animate="open"
-                exit="closed"
-                variants={{
-                  open: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
-                  closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
-                }}
-                className="px-4 pt-2 pb-6 flex flex-col space-y-2"
-              >
-                {navItems.map((item) => (
-                  <motion.div
-                    key={item.to}
-                    variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}
-                  >
-                    <NavItem to={item.to} label={item.label} isActive={activeSection === item.to} onClick={() => setIsMenuOpen(false)} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.nav>
 
       <main className="pt-28 pb-20 px-6 max-w-5xl mx-auto min-h-[85vh] relative z-10">

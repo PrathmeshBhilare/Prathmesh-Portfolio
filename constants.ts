@@ -68,9 +68,9 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
-    id: "hair-salon",
-    title: "Hair Salon Growth Platform",
-    subtitle: "A premium digital storefront designed to fill the booking calendar.",
+    id: "hair-salon-website",
+    title: "Premium Hair Salon Website",
+    subtitle: "A visually striking digital storefront designed for high-end salons.",
     tags: ["More Bookings", "Premium Brand", "Local SEO"],
     demoLink: "https://salon-nexus-prototype.prathmeshbhilare52.workers.dev/",
     caseStudy: {
@@ -87,8 +87,27 @@ export const PROJECTS: Project[] = [
     }
   },
   {
+    id: "hair-salon-pwa",
+    title: "Hair Salon PWA Application",
+    subtitle: "A mobile-first progressive web app for frictionless bookings.",
+    tags: ["PWA", "App-Like Experience", "High Conversion"],
+    demoLink: "https://salon-app-nu-six.vercel.app",
+    caseStudy: {
+      problem: "Clients wanted a faster, app-like experience on their phones without having to download a bulky native app from the store.",
+      importance: "Reducing friction in the booking process directly correlates to a higher volume of appointments.",
+      approach: "Developed a Progressive Web App (PWA) that offers native-like performance, offline capabilities, and instant loading times.",
+      benefits: [
+        "Installs directly to the user's home screen for easy access.",
+        "Blazing fast performance and smooth animations.",
+        "Drives repeat business by keeping the salon top-of-mind."
+      ],
+      outcome: "Increased mobile bookings significantly by providing a flawless, native-app feel directly through the browser.",
+      learnings: "PWAs are the perfect solution for service businesses wanting an app presence without the overhead of native app stores."
+    }
+  },
+  {
     id: "beauty-parlour",
-    title: "Beauty Parlour Sales Engine",
+    title: "Luxe Beauty Studio Platform",
     subtitle: "An elegant website that answers client questions and drives sales.",
     tags: ["Lead Generation", "Trust Building", "Mobile Optimized"],
     demoLink: "https://beautybook.prathmeshbhilareml.workers.dev/",
